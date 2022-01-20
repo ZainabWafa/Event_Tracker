@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { auth, signInWithEmailAndPassword, signInWithGoogle } from "./firebase";
+//changed auth to Get auth, signInwithgoogle to signinwithpopup
+import { Getauth, signInWithEmailAndPassword, signInWithPopup,GoogleAuthProvider } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import "./Login.css";
 function Login() {

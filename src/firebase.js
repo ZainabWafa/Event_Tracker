@@ -15,23 +15,6 @@ import {
   collection,
   where,
   addDoc,
-} from "firebase/firestore"; import { initializeApp } from "firebase/app";
-import {
-  GoogleAuthProvider,
-  getAuth,
-  signInWithPopup,
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-  sendPasswordResetEmail,
-  signOut,
-} from "firebase/auth";
-import {
-  getFirestore,
-  query,
-  getDocs,
-  collection,
-  where,
-  addDoc,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -43,9 +26,9 @@ const firebaseConfig = {
   appId: "1:420985177549:web:ea0dbd53d11678babcb084",
   measurementId: "G-82FB9HK55T"
 };
-const app = ​​initializeApp(firebaseConfig);
-​​const auth = getAuth(app);
-​​const db = getFirestore(app);
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
 const googleProvider = new GoogleAuthProvider();
 const signInWithGoogle = async () => {
   try {
