@@ -1,35 +1,21 @@
-import { Container, Row, Col } from "react-bootstrap";
-import { Routes, Route } from "react-router-dom";
 import "./App.css";
-import Home from "./components/Home";
-import Login from "./components/Login";
-import Signup from "./components/Signup";
-import ProtectedRoute from "./components/ProtectedRoute";
-import { UserAuthContextProvider } from "./context/UserAuthContext";
-
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Login from "./Login";
+import Register from "./Register";
+import Reset from "./Reset";
+import Dashboard from "./Dashboard";
 function App() {
   return (
-    <Container style={{ width: "400px" }}>
-      <Row>
-        <Col>
-          <UserAuthContextProvider>
-            <Routes>
-              <Route
-                path="/home"
-                element={
-                  <ProtectedRoute>
-                    <Home />
-                  </ProtectedRoute>
-                }
-              />
-              <Route path="/" element={<Login />} />
-              <Route path="/signup" element={<Signup />} />
-            </Routes>
-          </UserAuthContextProvider>
-        </Col>
-      </Row>
-    </Container>
+    <div className="app">
+      <Router>
+        <Routes>
+          <Route exact path="/" element={<Login />} />
+          <Route exact path="/register" element={<Register />} />
+          <Route exact path="/reset" element={<Reset />} />
+          <Route exact path="/dashboard" element={<Dashboard />} />
+        </Routes>
+      </Router>
+    </div>
   );
 }
-
 export default App;
