@@ -1,62 +1,26 @@
-import "./App.css";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component";
-import {auth, createUserProfileDocument} from './firebase/firebase.utils';
+import React from 'react';
+import{ Routes,Route  } from "react-router-dom";
+import './App.css'
+import AddEdit from './pages/AddEdit';
+import Home from './pages/Home';
+import View from './pages/View';
+import About from './pages/About';
 
-class App extends React.Component {
+const App = () => {
+  return(
+ 
+  
+  <div className='App'>
+   <Routes>
+     <Route exact path="/" element={<Home/>}/>
+     <Route path="/add" element={<AddEdit/>}/>
+     <Route path="/View/:id" element={<View/>}/>
+     <Route path="/about" element={<About/>}/>
+   </Routes>
 
-  constructor() {
-    super();
+  </div>
 
-    this.state = {
-      currentUser: null
-    };
-  }
-
-  unsubscribeFromAuth = null;
-
-  componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
-      if (userAuth) {
-        const userRef = await createUserProfileDocument(userAuth);
-        userRef.onSnapshot(snapShot => {
-          this.setState(
-            {
-              currentUser: {
-                id: snapShot.id,
-                ...snapShot.data()
-              }
-            },
-          );
-          console.log(this.state)
-        });
-      }
-     
-      this.setState({ user: userAuth });
-      // createUserProfileDocument(userAuth);
-      
-    });
-  }
-
-  componentWillUnmount() {
-    this.unsubscribeFromAuth();
-  }
-
-  render() {
-    return (
-      <div>
-        <Header currentUser={this.state.currentUser} />
-        <Switch>
-          <Route exact path='/' component={Homepage} />
-          <Route path='/shop' component={ShopPage} />
-          <Route path='/signin' component={SignInAndSignUpPage} />
-        
-        </Switch>
-        <Footer/>
-      
-      </div>
-    );
-  }
-}
+  );
+};
 
 export default App;
