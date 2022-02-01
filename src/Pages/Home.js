@@ -1,9 +1,9 @@
 import React from 'react';
 
-const View = () => {
+const Home = () => {
   return <div>
-      view
+      home
   </div>;
 };
 
-export default View;
+export default Home;

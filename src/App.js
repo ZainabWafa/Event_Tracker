@@ -1,35 +1,26 @@
-import { Container, Row, Col } from "react-bootstrap";
-import { Routes, Route } from "react-router-dom";
-import "./App.css";
-import Home from "./components/Home";
-import Login from "./components/Login";
-import Signup from "./components/Signup";
-import ProtectedRoute from "./components/ProtectedRoute";
-import { UserAuthContextProvider } from "./context/UserAuthContext";
+import React from 'react';
+import{ Routes,Route  } from "react-router-dom";
+import './App.css'
+import AddEdit from './pages/AddEdit';
+import Home from './pages/Home';
+import View from './pages/View';
+import About from './pages/About';
 
-function App() {
-  return (
-    <Container style={{ width: "400px" }}>
-      <Row>
-        <Col>
-          <UserAuthContextProvider>
-            <Routes>
-              <Route
-                path="/home"
-                element={
-                  <ProtectedRoute>
-                    <Home />
-                  </ProtectedRoute>
-                }
-              />
-              <Route path="/" element={<Login />} />
-              <Route path="/signup" element={<Signup />} />
-            </Routes>
-          </UserAuthContextProvider>
-        </Col>
-      </Row>
-    </Container>
+const App = () => {
+  return(
+ 
+  
+  <div className='App'>
+   <Routes>
+     <Route exact path="/" element={<Home/>}/>
+     <Route path="/add" element={<AddEdit/>}/>
+     <Route path="/View/:id" element={<View/>}/>
+     <Route path="/about" element={<About/>}/>
+   </Routes>
+
+  </div>
+
   );
-}
+};
 
 export default App;
